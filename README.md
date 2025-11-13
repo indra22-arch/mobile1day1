@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # mobile1day1
+=======
+# flutter_application_1
+>>>>>>> 659ea1d (commit 1)
 
 A new Flutter project.
 
