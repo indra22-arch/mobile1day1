@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Home_page.dart';
+import 'home_page.dart';
 import 'mutasi_page.dart';
 import 'autosplit_page.dart';
 import 'akun_page.dart';
@@ -21,11 +21,11 @@ class _MainNavigationState extends State<MainNavigation> {
   void initState() {
     super.initState();
     pages = [
-      HomePage(),
-      MutasiPage(),
-      QrisPage(),
-      AutoSplitPage(),
-      AkunPage(),
+      const HomePage(),
+      const MutasiPage(),
+      const QrisPage(),
+      const AutoSplitPage(),
+      const AkunPage(),
     ];
   }
 
@@ -47,9 +47,9 @@ class _MainNavigationState extends State<MainNavigation> {
             icon: Container(
               width: 56,
               height: 56,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                color: const Color(0xFFD4AF37),
+                color: Color(0xFFD4AF37),
               ),
               child: const Icon(Icons.qr_code_scanner, size: 30, color: Colors.black),
             ),

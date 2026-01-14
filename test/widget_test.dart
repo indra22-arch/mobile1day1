@@ -1,34 +1,44 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-<<<<<<< HEAD
-import 'package:mobile1day1/main.dart';
-=======
-import 'package:flutter_application_1/main.dart';
->>>>>>> 659ea1d (commit 1)
+// Gunakan relative path ke lib/
+import '../lib/main_navigation.dart';
+import '../lib/home_page.dart';
+import '../lib/mutasi_page.dart';
+import '../lib/autosplit_page.dart';
+import '../lib/akun_page.dart';
+import '../lib/qris_page.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('MainNavigation loads and navigates pages', (WidgetTester tester) async {
+    // Build MainNavigation widget
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: MainNavigation(),
+      ),
+    );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Pastikan HomePage muncul pertama
+    expect(find.byType(HomePage), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Tap BottomNavigationBar ke Riwayat
+    await tester.tap(find.text('Riwayat'));
+    await tester.pumpAndSettle();
+    expect(find.byType(MutasiPage), findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Tap ke QRIS
+    await tester.tap(find.byIcon(Icons.qr_code_scanner));
+    await tester.pumpAndSettle();
+    expect(find.byType(QrisPage), findsOneWidget);
+
+    // Tap ke Auto Split
+    await tester.tap(find.text('Auto Split'));
+    await tester.pumpAndSettle();
+    expect(find.byType(AutoSplitPage), findsOneWidget);
+
+    // Tap ke Akun
+    await tester.tap(find.text('Akun'));
+    await tester.pumpAndSettle();
+    expect(find.byType(AkunPage), findsOneWidget);
   });
 }
